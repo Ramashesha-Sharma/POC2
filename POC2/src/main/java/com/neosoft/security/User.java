@@ -10,11 +10,13 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "user")
+@Table(name="user")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String userName;
 	private String password;
 	private boolean active;

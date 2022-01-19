@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.neosoft.myexception.ResourceNotFoundException;
 
 
 @Service
@@ -18,10 +17,12 @@ public class MyUserDetailsService implements UserDetailsService {
 	UserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {		
-		Optional<User> user = userRepository.findByUserName(userName);
-		user.orElseThrow(() -> new ResourceNotFoundException("User", "UserName",userName));
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		Optional<User> user=userRepository.findByUserName(userName);
+		
+		
 		return user.map(MyUserDetail::new).get();
 	}
 	
+
 }
